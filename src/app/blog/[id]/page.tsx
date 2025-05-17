@@ -13,7 +13,7 @@ interface PageProps {
   };
 }
 
-export default function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params }: PageProps) {
   // Dans une application réelle, vous récupéreriez les données du blog en fonction de l'ID
   // const post = blogPosts.find((post) => post.id === params.id) || blogPosts[0]
   const post = blogPosts[0]
