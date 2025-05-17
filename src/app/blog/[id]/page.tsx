@@ -7,19 +7,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/Shared/ui/avat
 import { Badge } from "@/components/Shared/ui/badge"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/Shared/ui/card"
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function BlogPostPage({ params }: PageProps) {
-  // Dans une application réelle, vous récupéreriez les données du blog en fonction de l'ID
-  // const post = blogPosts.find((post) => post.id === params.id) || blogPosts[0]
+export default async function BlogPostPage({ params, searchParams }: any) {
   const post = blogPosts[0]
-
   return (
-    <div className="flex flex-col min-h-screen" key={params.id}>
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full py-12 md:py-24 lg:py-32 overflow-hidden">
         {/* Image de fond avec overlay */}
