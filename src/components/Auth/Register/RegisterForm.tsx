@@ -12,16 +12,13 @@ import { Label } from "@/components/Shared/ui/label"
 import { Checkbox } from "@/components/Shared/ui/checkbox"
 
 export default function Register() {
+
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsLoading(false)
-    // Here you would typically redirect to dashboard or home page
+    console.log("Form submitted")
   }
 
   return (

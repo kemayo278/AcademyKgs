@@ -1,5 +1,5 @@
 import Register from "@/components/Auth/Register/RegisterForm";
 
-export default function Page() {
+export default async function RegisterPage() {
   return <Register />;
 }

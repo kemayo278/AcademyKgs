@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Filter } from "lucide-react"
@@ -136,7 +138,7 @@ export default function CoursesPage() {
                       <div className="flex items-center justify-between w-full">
                         <p className="font-medium">{course.price}</p>
                         <Button asChild variant="ghost" size="sm">
-                          <Link href={`/courses/${course.id}`}>
+                          <Link href={`/courses/detail`}>
                             Voir <ArrowRight className="ml-1 h-4 w-4" />
                           </Link>
                         </Button>

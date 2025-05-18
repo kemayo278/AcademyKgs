@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, BookOpen, Calendar, Clock, Download, Globe, Play, Share2, Star, Users } from "lucide-react"
@@ -10,10 +12,10 @@ import { Separator } from "@/components/ui/separator"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Progress } from "@/components/ui/progress"
 
-export default function CourseDetailPage({ params }: { params: { id: string } }) {
+export default function CourseDetailPage() {
   // In a real application, you would fetch the course data based on the ID
   const course = {
-    id: params.id,
+    id: "1",
     title: "Développement Web Full Stack",
     description:
       "Apprenez à créer des applications web complètes avec les technologies modernes. Ce cours couvre HTML, CSS, JavaScript, React, Node.js, et les bases de données.",

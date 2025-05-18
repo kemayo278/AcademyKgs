@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react"
@@ -146,7 +148,7 @@ export default function BlogPage() {
                           <span>{post.readTime} min de lecture</span>
                         </div>
                         <Button asChild variant="ghost" size="sm">
-                          <Link href={`/blog/${post.id}`}>
+                          <Link href={`/blog/detail`}>
                             Lire plus <ArrowRight className="ml-1 h-4 w-4" />
                           </Link>
                         </Button>

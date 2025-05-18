@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { Eye, EyeOff, Facebook, Github, Loader2 } from "lucide-react"
@@ -17,11 +16,7 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    setIsLoading(false)
-    // Here you would typically redirect to dashboard or home page
+    console.log("Form submitted")
   }
 
   return (

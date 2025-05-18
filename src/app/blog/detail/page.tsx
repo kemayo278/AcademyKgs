@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, Calendar, Clock, Facebook, Linkedin, MessageCircle, Share2, Twitter } from "lucide-react"
@@ -7,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/Shared/ui/avat
 import { Badge } from "@/components/Shared/ui/badge"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/Shared/ui/card"
 
-export default async function BlogPostPage({ params, searchParams }: any) {
+export default function BlogPostPage() {
   const post = blogPosts[0]
   return (
     <div className="flex flex-col min-h-screen">

@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer"
 import "./globals.css"
 import { NavigationProgress } from "@/components/ui/nprogress"
 import WebsiteLayout from "@/components/Shared/Layout/WebsiteLayout"
+import { Suspense } from "react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -33,10 +34,12 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <NavigationProgress />
-          <div className="relative flex min-h-screen flex-col">
-            <WebsiteLayout>{children}</WebsiteLayout>
-          </div>
+          <Suspense>
+            <NavigationProgress />
+            <div className="relative flex min-h-screen flex-col">
+              <WebsiteLayout>{children}</WebsiteLayout>
+            </div>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>
