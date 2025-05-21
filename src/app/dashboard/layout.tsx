@@ -9,8 +9,8 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
-} from "@/components/Shared/ui/sidebar"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/Shared/ui/avatar"
+} from "@/components/ui/sidebar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { BookOpen, Calendar, FileText, Home, LayoutDashboard, MessageSquare, Settings, User } from "lucide-react"
 import Link from "next/link"
 
@@ -20,7 +20,7 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   return (
-    <SidebarProvider defaultOpen={true}>
+    <SidebarProvider defaultOpen={false}>
       <div className="flex min-h-screen">
         <Sidebar>
           <SidebarHeader className="border-b pb-0">

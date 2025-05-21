@@ -23,7 +23,7 @@ export function Categories() {
                 <CardHeader className="p-4">
                   <div className="flex items-center space-x-2">
                     <div className="rounded-full bg-gray-100 p-2 dark:bg-gray-800">{category.icon}</div>
-                    <CardTitle className="line-clamp-1">{category.name}</CardTitle>
+                    <CardTitle className="line-clamp-1 text-xl">{category.name}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="p-4 pt-0">
