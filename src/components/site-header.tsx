@@ -180,14 +180,14 @@ export function SiteHeader() {
                     ) : (
                       <>
                         <Link
-                          href="/signin"
+                          href="/auth/login"
                           className="text-sm font-medium transition-colors hover:text-primary"
                           onClick={() => setIsOpen(false)}
                         >
                           Se connecter
                         </Link>
                         <Link
-                          href="/register"
+                          href="/auth/register"
                           className="text-sm font-medium transition-colors hover:text-primary"
                           onClick={() => setIsOpen(false)}
                         >

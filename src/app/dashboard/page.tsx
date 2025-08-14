@@ -15,6 +15,288 @@ export default function DashboardPage() {
         <h1 className="text-3xl font-bold tracking-tight">Tableau de bord</h1>
         <p className="text-muted-foreground">Bienvenue sur votre espace apprenant, Jean.</p>
       </div>
+
+      {/* Overview Cards */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Formations en cours</CardTitle>
+            <BookOpen className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">4</div>
+            <p className="text-xs text-muted-foreground">sur 6 formations achetées</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Progression globale</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">68%</div>
+            <Progress value={68} className="h-2 mt-2" />
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Certificats obtenus</CardTitle>
+            <Award className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">2</div>
+            <p className="text-xs text-muted-foreground">+1 depuis le mois dernier</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Heures d'apprentissage</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">42h</div>
+            <p className="text-xs text-muted-foreground">+5h depuis la semaine dernière</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Continue Learning */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold">Continuer l'apprentissage</h2>
+          <Button asChild variant="ghost" size="sm">
+            <Link href="/dashboard/courses">
+              Voir toutes mes formations <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {continueLearningCourses.map((course) => (
+            <Card key={course.id} className="overflow-hidden">
+              <div className="grid md:grid-cols-3 gap-0">
+                <div className="relative aspect-video md:aspect-square overflow-hidden">
+                  <Image src={course.image || "/placeholder.svg"} alt={course.title} fill className="object-cover" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Button size="icon" className="h-10 w-10 rounded-full bg-kokitech-blue hover:bg-kokitech-darkBlue">
+                      <Play className="h-5 w-5" />
+                    </Button>
+                  </div>
+                </div>
+                <div className="md:col-span-2 p-4 flex flex-col">
+                  <CardHeader className="p-0 pb-2">
+                    <CardTitle className="text-base line-clamp-1">{course.title}</CardTitle>
+                    <CardDescription className="text-xs">{course.module}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="p-0 py-2 flex-grow">
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <span>Progression</span>
+                        <span className="font-medium">{course.progress}%</span>
+                      </div>
+                      <Progress value={course.progress} className="h-1" />
+                    </div>
+                  </CardContent>
+                  <CardFooter className="p-0 pt-2 flex justify-between items-center">
+                    <div className="flex items-center text-xs text-muted-foreground">
+                      <Clock className="mr-1 h-3 w-3" />
+                      <span>{course.timeLeft} restant</span>
+                    </div>
+                    <Button asChild size="sm" className="bg-kokitech-blue hover:bg-kokitech-darkBlue">
+                      <Link href={`/dashboard/courses/${course.id}`}>Continuer</Link>
+                    </Button>
+                  </CardFooter>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Upcoming Events and Recommendations */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {/* Upcoming Events */}
+        <Card className="md:col-span-1">
+          <CardHeader>
+            <CardTitle>Événements à venir</CardTitle>
+            <CardDescription>Vos prochains cours et événements planifiés</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {upcomingEvents.map((event, index) => (
+              <div key={index} className="flex items-start space-x-4">
+                <div className="bg-muted p-2 rounded-md">
+                  <Calendar className="h-4 w-4 text-kokitech-blue" />
+                </div>
+                <div className="space-y-1">
+                  <p className="font-medium text-sm">{event.title}</p>
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <Clock className="mr-1 h-3 w-3" />
+                    <span>
+                      {event.date} • {event.time}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">{event.description}</p>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+          <CardFooter>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/dashboard/calendar">Voir le calendrier</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+
+        {/* Recommendations */}
+        <Card className="md:col-span-1">
+          <CardHeader>
+            <CardTitle>Recommandations</CardTitle>
+            <CardDescription>Formations qui pourraient vous intéresser</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {recommendedCourses.map((course) => (
+              <div key={course.id} className="flex items-start space-x-4">
+                <div className="relative w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
+                  <Image src={course.image || "/placeholder.svg"} alt={course.title} fill className="object-cover" />
+                </div>
+                <div className="space-y-1 flex-1">
+                  <div className="flex items-center justify-between">
+                    <p className="font-medium text-sm line-clamp-1">{course.title}</p>
+                    <Badge variant="outline" className="text-xs">
+                      {course.category}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center text-xs">
+                    <Star className="mr-1 h-3 w-3 fill-yellow-400 text-yellow-400" />
+                    <span>
+                      {course.rating} ({course.reviews} avis)
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground line-clamp-1">{course.description}</p>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+          <CardFooter>
+            <Button asChild variant="outline" className="w-full">
+              <Link href="/courses">Explorer plus de formations</Link>
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+
+      {/* Learning Path Progress */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Progression de ma spécialisation</CardTitle>
+          <CardDescription>Développeur Full Stack JavaScript</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="modules">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="modules">Modules</TabsTrigger>
+              <TabsTrigger value="timeline">Chronologie</TabsTrigger>
+            </TabsList>
+            <TabsContent value="modules" className="space-y-4 pt-4">
+              {specializationModules.map((module, index) => (
+                <div key={index} className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center">
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
+                          module.completed ? "bg-green-100 text-green-700" : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {module.completed ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        ) : (
+                          index + 1
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-medium">{module.title}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {module.lessons} leçons • {module.duration}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-sm">
+                      {module.completed ? (
+                        <Badge variant="outline" className="bg-green-100 text-green-700 hover:bg-green-100">
+                          Terminé
+                        </Badge>
+                      ) : module.inProgress ? (
+                        <Badge variant="outline" className="bg-blue-100 text-blue-700 hover:bg-blue-100">
+                          En cours
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline">À venir</Badge>
+                      )}
+                    </div>
+                  </div>
+                  <Progress value={module.progress} className="h-1" />
+                </div>
+              ))}
+            </TabsContent>
+            <TabsContent value="timeline" className="pt-4">
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-muted"></div>
+                <div className="space-y-8">
+                  {specializationTimeline.map((item, index) => (
+                    <div key={index} className="relative pl-10">
+                      <div
+                        className={`absolute left-0 w-8 h-8 rounded-full flex items-center justify-center ${
+                          item.completed ? "bg-green-100 text-green-700" : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {item.completed ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        ) : (
+                          <Clock className="h-4 w-4" />
+                        )}
+                      </div>
+                      <div className="space-y-1">
+                        <p className="font-medium">{item.title}</p>
+                        <p className="text-sm text-muted-foreground">{item.date}</p>
+                        <p className="text-sm">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+        <CardFooter>
+          <Button asChild className="w-full bg-kokitech-blue hover:bg-kokitech-darkBlue">
+            <Link href="/dashboard/specializations/1">Voir ma spécialisation</Link>
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   )
 }

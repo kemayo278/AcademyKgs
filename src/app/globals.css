@@ -87,7 +87,7 @@
 }
 
 #nprogress .bar {
-  background: #e63946;
+  background: #e63946; /* Couleur rouge Kokitech */
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -118,31 +118,31 @@
 
 @media (min-width: 640px) {
   .container {
-    width: 100%;
+    max-width: 640px;
   }
 }
 
 @media (min-width: 768px) {
   .container {
-    width: 100%;
+    max-width: 768px;
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    width: 100%;
+    max-width: 1024px;
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-    width: 100%;
+    max-width: 1280px;
   }
 }
 
 @media (min-width: 1400px) {
   .container {
-    width: 100%;
+    max-width: 1400px;
   }
 }
 
@@ -489,6 +489,46 @@
 [data-collapsible="icon"] [data-sidebar="menu-button"] > span {
   display: none;
 }
+
+/* Ajouter ces styles à la fin du fichier globals.css */
+
+/* Styles pour gérer le positionnement du contenu principal par rapport à la sidebar */
+.flex-1 {
+  transition: margin-left 0.2s ease-in-out;
+}
+
+/* Quand la sidebar est ouverte (état expanded), repousser le contenu principal */
+[data-state="expanded"] ~ .flex-1 {
+  margin-left: var(--sidebar-width);
+}
+
+/* Quand la sidebar est en mode icône, ajuster la marge du contenu principal */
+[data-collapsible="icon"] ~ .flex-1 {
+  margin-left: var(--sidebar-width-icon);
+}
+
+/* Quand la sidebar est fermée (état collapsed), réinitialiser la marge */
+[data-state="collapsed"][data-collapsible="offcanvas"] ~ .flex-1 {
+  margin-left: 0;
+}
+
+/* Ajuster le positionnement du SidebarTrigger */
+[data-sidebar="trigger"] {
+  position: relative;
+  z-index: 20;
+}
+
+/* Styles pour le layout du dashboard */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  transition: margin-left 0.2s ease-in-out;
+}
+
 
 
 @theme inline {

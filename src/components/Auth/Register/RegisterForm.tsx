@@ -10,15 +10,18 @@ import { Button } from "@/components/Shared/ui/button"
 import { Input } from "@/components/Shared/ui/input"
 import { Label } from "@/components/Shared/ui/label"
 import { Checkbox } from "@/components/Shared/ui/checkbox"
+import { useRouter } from "next/navigation"
 
 export default function Register() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted")
+    router.push("/dashboard")
   }
 
   return (
